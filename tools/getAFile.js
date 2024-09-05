@@ -1,5 +1,10 @@
-const {readFileSync: RFS, existsSync: es} = require('fs')
-const path = require('path')
+import  {readFileSync as RFS, existsSync as es} from 'fs'
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const getAFile = ( req, res) => {
     const { fileName} = req.params
     const filePath = path.join(__dirname,`../root`,fileName)
@@ -15,4 +20,4 @@ const getAFile = ( req, res) => {
     })
 };
 
-module.exports = getAFile;
+export default getAFile;
