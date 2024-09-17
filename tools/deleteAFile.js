@@ -1,17 +1,25 @@
-const {unlinkSync: uls, existsSync: es } = require('fs')
-const path = require('path')
+import {unlinkSync as uls, existsSync as es }  from 'fs'
+import path from 'path';
+import { fileURLToPath } from 'url';
+import createAfile from "./createAfile.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const deleteAFile = (req, res) => {
     const {fileName} = req.params
-    const filePath = path.join(__dirname, '../root', fileName)
-    if(es(filePath)){
-        uls(filePath)
+    const filepath = path.join(__dirname,'../root',fileName)
+    console.log(filepath)
+    if(es(filepath)){
+        uls(filepath)
         res.status(200).json({
             "message": "File deleted successfully"
         })
     }
-    res.status(400).json({
-        "message": "File doesn't exists"
-    })
+    else{
+        res.status(400).json({
+            "message": "File doesn't exists"
+        })
+    }
 };
-
-module.exports = deleteAFile;
+export default deleteAFile;
