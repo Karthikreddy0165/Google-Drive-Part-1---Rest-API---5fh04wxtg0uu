@@ -13,7 +13,7 @@ const deleteAFile = (req, res) => {
     if(es(filepath)){
         uls(filepath)
         res.status(200).json({
-            "message": "File deleted successfully"
+            "message": "File Deleted Successfully"
           })
     }
     else{
